@@ -101,7 +101,7 @@
           <repositoryName>stupid-maven-repo</repositoryName>
           <!-- remote branch name -->
           <branch>refs/heads/master</branch>
-          <path>snapshots</path>
+          <path>releases</path>
 
           <!-- This token, obtained from https://github.com/settings/applications,
             encrypted using
