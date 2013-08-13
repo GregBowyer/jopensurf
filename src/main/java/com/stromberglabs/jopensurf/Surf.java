@@ -27,17 +27,10 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 package com.stromberglabs.jopensurf;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -447,20 +440,19 @@ public class Surf implements Serializable {
 		}
 	}
 	
-	public static Surf readFromFile(String location){
+	public static Surf readFromFile(String location) throws Exception {
 		File file = new File(location);
-		if (file != null && file.exists()) {
-			try {
-				ObjectInputStream str = new ObjectInputStream(
-						new FileInputStream(file));
-				return (Surf)str.readObject();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		if (file.exists()) {
+            return readInputStream(new FileInputStream(file));
 		}
 		return null;
 	}
-	
+
+    public static Surf readInputStream(InputStream originalImage) throws Exception {
+        ObjectInputStream str = new ObjectInputStream(originalImage);
+        return (Surf) str.readObject();
+    }
+
 	private void writeObject(ObjectOutputStream out) throws IOException {
 		if ( mFreeOrientedPoints == null ) getFreeOrientedInterestPoints();
 		if ( mUprightPoints == null ) getUprightInterestPoints();

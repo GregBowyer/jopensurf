@@ -27,7 +27,6 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 package com.stromberglabs.jopensurf;
 
 import java.awt.*;
@@ -38,7 +37,6 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
 
 public class SurfCompare extends JPanel {
 	private static final long serialVersionUID = 1L;

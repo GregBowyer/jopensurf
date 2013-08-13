@@ -27,7 +27,6 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 package com.stromberglabs.jopensurf;
 
 import java.io.File;
@@ -37,10 +36,10 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import org.apache.commons.math.linear.Array2DRowRealMatrix;
-import org.apache.commons.math.linear.DecompositionSolver;
-import org.apache.commons.math.linear.LUDecompositionImpl;
-import org.apache.commons.math.linear.RealMatrix;
+import org.apache.commons.math3.linear.Array2DRowRealMatrix;
+import org.apache.commons.math3.linear.DecompositionSolver;
+import org.apache.commons.math3.linear.LUDecomposition;
+import org.apache.commons.math3.linear.RealMatrix;
 
 public class FastHessian implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -192,7 +191,7 @@ public class FastHessian implements Serializable {
 		RealMatrix partialDerivs = getPartialDerivativeMatrix(r,c,t,m,b);
 		RealMatrix hessian3D = getHessian3DMatrix(r,c,t,m,b);
 		
-		DecompositionSolver solver = new LUDecompositionImpl(hessian3D).getSolver();
+		DecompositionSolver solver = new LUDecomposition(hessian3D).getSolver();
 		RealMatrix X = solver.getInverse().multiply(partialDerivs);
 		
 //		System.out.println("X = " + X.getColumnDimension() + " col x " + X.getRowDimension() + " rows");
