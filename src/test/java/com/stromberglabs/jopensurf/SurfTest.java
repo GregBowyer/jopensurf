@@ -8,8 +8,10 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class SurfTest {
 
 	/**
