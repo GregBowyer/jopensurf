@@ -17,8 +17,8 @@ public class SurfTest {
 	/**
 	 * This is a simple function that just tests that the high level output
 	 * from lenna.png . I am using this to test refactoring so that I can insure
-	 * that the output of the algorithm didn't change 
-	 * 
+	 * that the output of the algorithm didn't change
+	 *
 	 * @throws Exception
 	 */
 	@Test

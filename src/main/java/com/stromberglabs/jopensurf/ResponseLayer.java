@@ -1,6 +1,6 @@
 /*
 This work was derived from Chris Evan's opensurf project and re-licensed as the
-3 clause BSD license with permission of the original author. Thank you Chris! 
+3 clause BSD license with permission of the original author. Thank you Chris!
 
 Copyright (c) 2010, Andrew Stromberg
 All rights reserved.
@@ -61,10 +61,10 @@ public class ResponseLayer implements Serializable {
 		//System.out.println("filter: " + mFilter + ", b: " + b + ", l: " + l + ", w: " + w);
 		//System.out.println("inverse area = " + inverse_area);
 		for(int r, c, ar = 0, index = 0; ar < mHeight; ++ar) {
-			for(int ac = 0; ac < mWidth; ++ac, index++){ 
+			for(int ac = 0; ac < mWidth; ++ac, index++){
 			      r = ar * mStep;
 			      c = ac * mStep;
-			      
+			
 			      // Compute response components
 			      Dxx = ImageTransformUtils.BoxIntegral(img, r - l + 1, c - b, 2*l - 1, w)
 			          - ImageTransformUtils.BoxIntegral(img, r - l + 1, c - l / 2, 2*l - 1, l)*3;
@@ -74,14 +74,14 @@ public class ResponseLayer implements Serializable {
 			            + ImageTransformUtils.BoxIntegral(img, r + 1, c - l, l, l)
 			            - ImageTransformUtils.BoxIntegral(img, r - l, c - l, l, l)
 			            - ImageTransformUtils.BoxIntegral(img, r + 1, c + 1, l, l);
-			      
+			
 			      //System.out.println("dxx: " + Dxx + ", dyy: " + Dyy + ", Dxy: " + Dxy);
 
 			      // Normalise the filter responses with respect to their size
 			      Dxx *= inverse_area;
 			      Dyy *= inverse_area;
 			      Dxy *= inverse_area;
-			      
+			
 			      // Get the determinant of hessian response & laplacian sign
 			      mResponses[ac][ar] = (Dxx * Dyy - 0.81f * Dxy * Dxy);
 			      mLaplacian[ac][ar] = (char)(Dxx + Dyy >= 0 ? 1 : 0);

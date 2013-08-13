@@ -1,6 +1,6 @@
 /*
 This work was derived from Chris Evan's opensurf project and re-licensed as the
-3 clause BSD license with permission of the original author. Thank you Chris! 
+3 clause BSD license with permission of the original author. Thank you Chris!
 
 Copyright (c) 2010, Andrew Stromberg
 All rights reserved.
@@ -35,24 +35,24 @@ import java.io.Serializable;
 
 /**
  * ABOUT generateIntegralImage
- * 
+ *
  * When OpenSURF stores it's version of the integral image, some slight rounding actually
  * occurs, it doesn't maintain the same values from when it calculates the integral image
  * to when it calls BoxIntegral on the same data
  * @author astromberg
  *
  * Example from C++ OpenSURF - THIS DOESN'T HAPPEN IN THE JAVA VERSION
- * 
+ *
  * IntegralImage Values at Calculation Time:
  * integralImage[11][9] = 33.69019699
  * integralImage[16][9] = 47.90196228
  * integralImage[11][18] = 65.84313202
  * integralImage[16][18] = 93.58038330
- * 
- * 
+ *
+ *
  * integralImage[11][18] = 65.84313202
  * que? integralImage[18][11] = 64.56079102
- * 
+ *
  * IntegralImage Values at BoxIntegral Time:
  * img[11][9] = 33.83921814
  * img[11][18] = 64.56079102

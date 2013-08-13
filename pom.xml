@@ -70,6 +70,59 @@
         <artifactId>maven-source-plugin</artifactId>
         <version>2.1.2</version>
       </plugin>
+
+      <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.7</version>
+        <configuration>
+          <altDeploymentRepository>internal.repo::default::file://${built.repo.dir}</altDeploymentRepository>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.github.github</groupId>
+        <artifactId>site-maven-plugin</artifactId>
+        <version>0.8</version>
+        <configuration>
+          <!-- git commit message -->
+          <message>Maven artifacts for ${project.groupId}:${project.artifactId}:${project.version} ~${maven.build.timestamp}</message>
+          <!-- disable webpage processing -->
+          <noJekyll>true</noJekyll>
+          <outputDirectory>${built.repo.dir}</outputDirectory>
+
+          <!-- This isn't perfect, because every old SNAPSHOT is kept.. -->
+          <merge>true</merge>
+
+          <!-- <dryRun>true</dryRun> -->
+          <!-- github username -->
+          <repositoryOwner>GregBowyer</repositoryOwner>
+          <!-- github repo name -->
+          <repositoryName>stupid-maven-repo</repositoryName>
+          <!-- remote branch name -->
+          <branch>refs/heads/master</branch>
+          <path>snapshots</path>
+
+          <!-- This token, obtained from https://github.com/settings/applications,
+            encrypted using
+            http://about.travis-ci.org/docs/user/build-configuration/#Secure-environment-variables,
+            is like a password; encrypt & guard it carefully! -->
+          <oauth2Token>${env.TOKEN}</oauth2Token>
+
+          <includes>
+            <include>**/*</include>
+          </includes>
+        </configuration>
+        <executions>
+          <!-- run site-maven-plugin's 'site' target as part of the build's normal
+            'deploy' phase -->
+          <execution>
+            <goals>
+              <goal>site</goal>
+            </goals>
+            <phase>deploy</phase>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
